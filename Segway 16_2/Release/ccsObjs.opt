@@ -1,0 +1,1 @@
+"./Motor.obj" "./PID.obj" "./main.obj" "./senorhub.obj" "./startup_ccs.obj" "./utils/uartstdio.obj" "./drivers/rgb.obj" "C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/ccs/Debug/driverlib.lib" "../tm4c123gh6pm.cmd" -l"libc.a" 
