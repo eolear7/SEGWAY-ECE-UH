@@ -10,45 +10,45 @@ LIB_SRCS += \
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/ccs/Debug/driverlib.lib 
 
 C_SRCS += \
-../Motor.c \
 ../PID.c \
 ../main.c \
-../senorhub.c \
+../motor.c \
+../sensorhub.c \
 ../startup_ccs.c 
 
 OBJS += \
-./Motor.obj \
 ./PID.obj \
 ./main.obj \
-./senorhub.obj \
+./motor.obj \
+./sensorhub.obj \
 ./startup_ccs.obj 
 
 C_DEPS += \
-./Motor.pp \
 ./PID.pp \
 ./main.pp \
-./senorhub.pp \
+./motor.pp \
+./sensorhub.pp \
 ./startup_ccs.pp 
 
 C_DEPS__QUOTED += \
-"Motor.pp" \
 "PID.pp" \
 "main.pp" \
-"senorhub.pp" \
+"motor.pp" \
+"sensorhub.pp" \
 "startup_ccs.pp" 
 
 OBJS__QUOTED += \
-"Motor.obj" \
 "PID.obj" \
 "main.obj" \
-"senorhub.obj" \
+"motor.obj" \
+"sensorhub.obj" \
 "startup_ccs.obj" 
 
 C_SRCS__QUOTED += \
-"../Motor.c" \
 "../PID.c" \
 "../main.c" \
-"../senorhub.c" \
+"../motor.c" \
+"../sensorhub.c" \
 "../startup_ccs.c" 
 
 

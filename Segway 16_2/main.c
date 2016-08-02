@@ -29,7 +29,7 @@ int main(void)
 	initsensorhub();
 	motors_initialize();
 
-	while(1)
+	for(;;)
 	{
 		sensor();
 		PID(0,0,0,0.5);

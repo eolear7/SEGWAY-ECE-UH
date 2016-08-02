@@ -10,10 +10,10 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./Motor.obj" \
 "./PID.obj" \
 "./main.obj" \
-"./senorhub.obj" \
+"./motor.obj" \
+"./sensorhub.obj" \
 "./startup_ccs.obj" \
 "./utils/uartstdio.obj" \
 "./drivers/rgb.obj" \
@@ -164,8 +164,8 @@ Segway\ 16_2.bin: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "Motor.pp" "PID.pp" "main.pp" "senorhub.pp" "startup_ccs.pp" "utils\uartstdio.pp" "drivers\rgb.pp" 
-	-$(RM) "Motor.obj" "PID.obj" "main.obj" "senorhub.obj" "startup_ccs.obj" "utils\uartstdio.obj" "drivers\rgb.obj" 
+	-$(RM) "PID.pp" "main.pp" "motor.pp" "sensorhub.pp" "startup_ccs.pp" "utils\uartstdio.pp" "drivers\rgb.pp" 
+	-$(RM) "PID.obj" "main.obj" "motor.obj" "sensorhub.obj" "startup_ccs.obj" "utils\uartstdio.obj" "drivers\rgb.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

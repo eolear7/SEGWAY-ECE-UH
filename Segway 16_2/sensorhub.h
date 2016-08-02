@@ -13,7 +13,6 @@
 int sensor(void);
 void initsensorhub(void);
 extern volatile uint32_t pitch;
-extern volatile uint32_t currentSpeed;
 
 #endif
 

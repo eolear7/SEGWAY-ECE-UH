@@ -30,6 +30,7 @@ volatile float PIDLeft;
 volatile float PIDRight;
 volatile uint32_t maxspeed = 800;
 volatile uint32_t minspeed = 200;
+volatile uint32_t currentSpeed=550;
 
 void PID(uint32_t restangle, uint32_t offset,  uint32_t turning,  uint32_t dt) {
 
@@ -42,7 +43,9 @@ void PID(uint32_t restangle, uint32_t offset,  uint32_t turning,  uint32_t dt) {
 	lastError = error;
 	PIDValue = pterm + iterm + dterm;
 
-	currentSpeed = (currentSpeed + PIDValue * 0.004) * 0.999;
+	//currentSpeed = (currentSpeed + PIDValue * 0.004) * 0.999;
+
+	currentSpeed = currentSpeed + PIDValue;
 
 	if (currentSpeed > maxspeed)
 	{
@@ -106,17 +109,9 @@ if (turning < 0) { // Left
 
   PIDLeft *= leftMotorScaler; // Compensate for difference in some of the motors
   PIDRight *= rightMotorScaler;
-
-
-
-  /* Set PWM Values
-	  turning = 0;
-	  uint32_t PIDLeft = PIDValue - turning;
-	  uint32_t PIDRight = PIDValue + turning;
-
-	  PIDLeft *= leftMotorScaler; // Compensate for difference in some of the motors
-	  PIDRight *= rightMotorScaler;
 */
+
+
 
 
 

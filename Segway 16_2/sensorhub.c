@@ -20,7 +20,10 @@
 #include "drivers/rgb.h"
 #include "driverlib/pwm.h"
 #include "inc/hw_gpio.h"
-#define PWM_FREQUENCY 20000
+#include "sensorhub.h" // make function that outputs angle value we need
+#include "motor.h"
+#include "PID.h"
+
 
 //*****************************************************************************
 //
@@ -112,7 +115,6 @@ uint32_t g_ui32PrintSkipCounter;
 //*****************************************************************************
 // floating variables for sensorhub function
 volatile uint32_t pitch;
-volatile uint32_t currentSpeed;
 int_fast32_t i32IPart[16], i32FPart[16];
 uint_fast32_t ui32Idx, ui32CompDCMStarted;
 float pfData[16];
@@ -318,7 +320,8 @@ ConfigureUART(void)
 
 //check why float declaration has to be inside int sensor(void)
 
-void initsensorhub(void){
+void initsensorhub(void)
+{
 	//
 	// Enable port B used for motion interrupt.
 	//
@@ -457,15 +460,15 @@ void initsensorhub(void){
 	UARTprintf("\033[2J\033[H");
 	UARTprintf("MPU9150 9-Axis Simple Data Application Example\n\n");
 	UARTprintf("\033[20GX\033[31G|\033[43GY\033[54G|\033[66GZ\n\n");
-	// UARTprintf("Accel\033[8G|\033[31G|\033[54G|\n\n");
-	//  UARTprintf("Gyro\033[8G|\033[31G|\033[54G|\n\n");
-	// UARTprintf("Mag\033[8G|\033[31G|\033[54G|\n\n");
+	 UARTprintf("Accel\033[8G|\033[31G|\033[54G|\n\n");
+	  UARTprintf("Gyro\033[8G|\033[31G|\033[54G|\n\n");
+	 UARTprintf("Mag\033[8G|\033[31G|\033[54G|\n\n");
 	UARTprintf("\n\033[20GRoll\033[31G|\033[43GPitch\033[54G|\033[66GYaw\n\n");
 	UARTprintf("Eulers\033[8G|\033[31G|\033[54G|\n\n");
 
-	//    UARTprintf("\n\033[17GQ1\033[26G|\033[35GQ2\033[44G|\033[53GQ3\033[62G|"
-	//             "\033[71GQ4\n\n");
-	//  UARTprintf("Q\033[8G|\033[26G|\033[44G|\033[62G|\n\n");
+	  UARTprintf("\n\033[17GQ1\033[26G|\033[35GQ2\033[44G|\033[53GQ3\033[62G|"
+	            "\033[71GQ4\n\n");
+	  UARTprintf("Q\033[8G|\033[26G|\033[44G|\033[62G|\n\n");
 
 	//
 	// Enable blinking indicates config finished successfully
@@ -493,7 +496,7 @@ int sensor(void)
 		//
 		while(!g_vui8I2CDoneFlag)
 		{
-			//ROM_SysCtlSleep();
+			ROM_SysCtlSleep();
 		}
 
 		//
@@ -632,7 +635,7 @@ int sensor(void)
 			}
 
 			//
-			/*
+
 			  // Print the acceleration numbers in the table.
 	            //
 	            UARTprintf("\033[5;17H%3d.%03d", i32IPart[0], i32FPart[0]);
@@ -653,7 +656,7 @@ int sensor(void)
 	            UARTprintf("\033[9;17H%3d.%03d", i32IPart[6], i32FPart[6]);
 	            UARTprintf("\033[9;40H%3d.%03d", i32IPart[7], i32FPart[7]);
 	            UARTprintf("\033[9;63H%3d.%03d", i32IPart[8], i32FPart[8]);
-			 */
+
 			//
 			// Print the Eulers in a table.
 			//
@@ -675,10 +678,11 @@ int sensor(void)
 	            UARTprintf("\033[19;68H%3d.%03d", i32IPart[15], i32FPart[15]);
 
 	           // currentSpeed=i32IPart[9]; how to get velocity from speed
-	            pitch= i32IPart[9];
+
 
 
 	}
+		return  pitch= i32IPart[9];
 
-
+	}
 
